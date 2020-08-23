@@ -1,16 +1,11 @@
-# Basic CRUD
+# Employees Basic CRUD
 
-Basic CRUD with Angular 8.1 
-
-### Start DB server
-```
-cd /src/app/data
-json-server --watch db.json
-``` 
+### Start node server first
+[Node Backend](https://github.com/TheGlitchCat/employee_app_back)
 
 ### Start App
 ```
-npm install
-ng serve
+    npm install
+    ng serve
 ``` 
 

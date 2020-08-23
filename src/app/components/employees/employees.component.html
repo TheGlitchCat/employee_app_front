@@ -3,24 +3,25 @@
   <app-msg [msgText]="msgText"></app-msg>
 </div>
 
-<h1>Authors</h1>
+<h1>Employees</h1>
 
 <div class="col-lg-12 row justify-content-center align-items-center container">
 
   <div class="col-lg-6">
-    <form class="col-12" [formGroup]="authorForm" (ngSubmit)="onSubmit(authorForm.value)">
+    <form class="col-12" [formGroup]="employeeForm" (ngSubmit)="onSubmit(employeeForm.value)">
 
+      
       <div class="form-group row">
-        <label for="inputId3" class="col-sm-2 col-form-label">id</label>
+        <label for="inputId3" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-8">
-          <input type="number" class="form-control" id="inputId3" formControlName="id" placeholder="Author id">
+          <input type="text" class="form-control" id="inputId3" formControlName="name" placeholder="Employee name">
         </div>
       </div>
 
       <div class="form-group row">
-        <label for="inputName3" class="col-sm-2 col-form-label">Name</label>
+        <label for="inputName3" class="col-sm-2 col-form-label">Function</label>
         <div class="col-sm-8">
-          <input type="text" class="form-control" id="inputName3" formControlName="name" placeholder="Author name">
+          <input type="text" class="form-control" id="inputName3" formControlName="funct" placeholder="Employee Function">
         </div>
       </div>
 
@@ -32,10 +33,10 @@
     </form>
   </div>
 
-  <div *ngIf="card.title" class="col-lg-2 card" style="width: 18rem;">
+  <div *ngIf="card.name" class="col-lg-2 card" style="width: 18rem;">
     <img src="http://via.placeholder.com/100" class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title">{{card.title}}</h5>
+      <h5 class="card-title">{{card.name}}</h5>
     </div>
   </div>
 
@@ -53,17 +54,19 @@
     <tr>
       <th scope="col">Id</th>
       <th>Name</th>
+      <th>Function</th>
       <th></th>
       <th></th>
       <th></th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let author of authors">
-      <td scope="row">{{author.id}}</td>
-      <td>{{author.name}}</td>
-      <td><button type="button" class="btn btn-primary" (click)="showAuthor(author)">Show</button></td>
-      <td><button type="button" class="btn btn-danger" (click)="deleteAuthor(author)">Delete</button></td>
+    <tr *ngFor="let employee of employees">
+      <td scope="row">{{employee.id}}</td>
+      <td >{{employee.name}}</td>
+      <td>{{employee.funct}}</td>
+      <td><button type="button" class="btn btn-primary" (click)="showEmployee(employee)">Show</button></td>
+      <td><button type="button" class="btn btn-danger" (click)="deleteEmployee(employee)">Delete</button></td>
     </tr>
     </tbody>
   </table>

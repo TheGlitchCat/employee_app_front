@@ -4,20 +4,15 @@ export class User {
   email: string;
 }
 
-export class Author {
+export class Employee {
   id: number;
   name: string;
+  funct: string;
 }
 
-export class Book {
-  id: number;
-  title: string;
-  author: number;
+export class Relations {
+  employee_id: number;
+  boss_id: number;
 }
 
-export class Library {
-  id: number;
-  name: string;
-  address: string;
-  books: Array<number>;
-}
+

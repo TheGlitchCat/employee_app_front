@@ -1,43 +1,45 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {DataService} from '../../services/data.service';
-import {Author} from '../../models/models.model';
+import {Employee} from '../../models/models.model';
 
 @Component({
-  selector: 'app-authors',
-  templateUrl: './authors.component.html',
-  styleUrls: ['./authors.component.css']
+  selector: 'app-employees',
+  templateUrl: './employees.component.html',
+  styleUrls: ['./employees.component.css']
 })
-export class AuthorsComponent implements OnInit {
+export class EmployeesComponent implements OnInit {
 
   msgText: string;
 
-  authors: Object = [];
+  employees: Object = [];
 
-  authorForm: FormGroup;
+  employeeForm: FormGroup;
 
   option = 'Send';
 
   card = {
-    title: ''
+    name: ''
   };
 
   isLoaded = false;
 
   constructor(protected service: DataService, protected fb: FormBuilder) {
 
-    this.authorForm = this.fb.group({
-      id: null,
-      name: ''
+    this.employeeForm = this.fb.group({
+      name: '',
+      funct: ''
     });
 
   }
 
   ngOnInit() {
 
-    this.service.getAuthors().subscribe((data) => {
+    console.log('Hello?');
+
+    this.service.getEmployee().subscribe((data) => {
       console.log(data);
-      this.authors = data as Author[];
+      this.employees = data as Employee[];
     }, (error) => {
       this.msgText = error.message;
     }, () => {
@@ -46,19 +48,20 @@ export class AuthorsComponent implements OnInit {
 
   }
 
-  showAuthor(author){
-    console.log(author.id, author.name);
-    this.authorForm = this.fb.group({
-      id: author.id,
-      name: author.name
+  showEmployee(employee){
+    console.log(employee.id,employee.name, employee.funct);
+    this.employeeForm = this.fb.group({
+      id: employee.id,
+      name: employee.name,
+      funct: employee.funct
     });
-    this.card.title = author.name;
+    this.card.name = employee.name;
     this.option = 'Edit';
   }
 
-  deleteAuthor(author){
-    console.log(author.id, author.name);
-    this.service.deleteAuthors(author.id).subscribe((data) => {
+  deleteEmployee(employee){
+    console.log(employee.name, employee.funct);
+    this.service.deleteEmployee(employee.id).subscribe((data) => {
       console.log(data)
     }, (error) => {this.msgText = error.message;}, () => {
       this.reloadData();
@@ -69,14 +72,15 @@ export class AuthorsComponent implements OnInit {
   onSubmit(data){
     console.log(data);
     if (this.option == 'Send'){
-      this.service.postAuthors(data).subscribe((data) => {
+      this.service.postEmployee(data).subscribe((data) => {
       }, (error) => {this.msgText = error.message; console.log(error)}, () => {
         this.reloadData();
       });
     }
 
     if (this.option == 'Edit'){
-      this.service.putAuthors(data.id, data).subscribe((data) => {},
+      
+      this.service.putEmployee(data.id, data).subscribe((data) => {},
         (error) => {this.msgText = error.message;},
         () => {this.reloadData()});
     }
@@ -86,8 +90,8 @@ export class AuthorsComponent implements OnInit {
 
   reloadData(){
     this.resetItems();
-    this.service.getAuthors().subscribe((data) => {
-      this.authors = data as Author[]
+    this.service.getEmployee().subscribe((data) => {
+      this.employees = data as Employee[]
     }, (error) => {
       this.msgText = error.message;
     }, () => {
@@ -96,15 +100,15 @@ export class AuthorsComponent implements OnInit {
   }
 
   resetItems(){
-    this.authors = [];
+    this.employees = [];
     this.isLoaded = false;
     this.card = {
-      title: ''
+      name: ''
     };
 
-    this.authorForm = this.fb.group({
-      id: null,
-      name: ''
+    this.employeeForm = this.fb.group({
+      name: null,
+      funct: ''
     });
   }
 

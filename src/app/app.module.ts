@@ -8,17 +8,15 @@ import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { DataService } from './services/data.service';
 import { MsgComponent } from './components/msg/msg.component';
-import { AuthorsComponent } from './components/authors/authors.component';
-import { BooksComponent } from './components/books/books.component';
-import { LibrariesComponent } from './components/libraries/libraries.component';
+import { EmployeesComponent } from './components/employees/employees.component';
+import { RelationsComponent } from './components/relations/relations.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MsgComponent,
-    AuthorsComponent,
-    BooksComponent,
-    LibrariesComponent
+    EmployeesComponent,
+    RelationsComponent
   ],
   imports: [
     BrowserModule,

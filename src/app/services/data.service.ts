@@ -7,63 +7,48 @@ import {HttpClient} from '@angular/common/http';
 export class DataService {
 
   urlRoot = 'http://localhost:3000';
-  urlBooks = 'http://localhost:3000/books';
-  urlAuthors = 'http://localhost:3000/authors';
-  urlLibraries = 'http://localhost:3000/libraries';
+  urlRelations = 'http://localhost:3000/relations';
+  urlEmployees = 'http://localhost:3000/employees';
 
   constructor(private http: HttpClient) { }
 
-  // BOOKS
-  getBooks(){
-    return this.http.get(this.urlBooks);
+
+  // Employees
+  getEmployee(){
+    return this.http.get(this.urlEmployees);
   }
 
-  postBooks(params){
-    return this.http.post(this.urlBooks, params);
+  postEmployee(params){
+    return this.http.post(this.urlEmployees, params);
   }
 
-  putBooks(bookId, params){
-    return this.http.put(this.urlBooks + '/' + bookId, params);
+  putEmployee(employee_id, params){
+    return this.http.put(this.urlEmployees + '/' + employee_id, params);
   }
 
-  deleteBooks(bookId){
-    return this.http.delete(this.urlBooks + '/' + bookId);
+  deleteEmployee(employee_id){
+    return this.http.delete(this.urlEmployees + '/' + employee_id);
   }
 
-  // AUTHORS
-  getAuthors(){
-    return this.http.get(this.urlAuthors);
+
+  // Relations
+  getRelations(){
+    return this.http.get(this.urlRelations);
   }
 
-  postAuthors(params){
-    return this.http.post(this.urlAuthors, params);
+  postRelations(params){
+    return this.http.post(this.urlRelations, params);
   }
 
-  putAuthors(authorId, params){
-    return this.http.put(this.urlAuthors + '/' + authorId, params);
+  putRelations(relations_id, params){
+    return this.http.put(this.urlRelations + '/' + relations_id, params);
   }
 
-  deleteAuthors(authorId){
-    return this.http.delete(this.urlAuthors + '/' + authorId);
+  deleteRelations(relations_id){
+    return this.http.delete(this.urlRelations + '/' + relations_id);
   }
 
-  // LIBRARIES
-  getLibraries(){
-    return this.http.get(this.urlLibraries);
-  }
-
-  postLibraries(params){
-    return this.http.post(this.urlLibraries, params);
-  }
-
-  putLibraries(libraryId, params){
-    return this.http.put(this.urlLibraries + '/' + libraryId, params);
-  }
-
-  deleteLibraries(libraryId){
-    return this.http.delete(this.urlLibraries + '/' + libraryId);
-  }
-
+  
   // GENERICS
   get(url: string){
     return this.http.get(url);
